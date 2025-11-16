@@ -11,6 +11,7 @@
 #include "matrice.h"
 #include "tsp_utils.h"
 #include "force_brute.h"
+#include "heuristiques.h"
 
 
 /*  Exécute la logique de test de la Partie 1 (force brute).
@@ -118,6 +119,47 @@ void executer_bf(InstanceTSP* instance, FonctionDistance dist_func) {
 
 }
 
+void executer_nn(const InstanceTSP* instance, FonctionDistance dist_func, bool avecOpt) {
+    clock_t debut, fin;
+    debut = clock();
+    Tournee* tournee = plus_proche_voisin(instance, dist_func);
+    fin = clock();
+    double temps_calcul = ((double)(fin - debut)) / CLOCKS_PER_SEC;
+    if (tournee && !avecOpt){
+        afficher_tournee_normalisee(instance,tournee,"nn",temps_calcul);
+        liberer_tournee(tournee);
+    }    
+    else if (tournee && avecOpt){
+        debut = clock();
+        bool ameliore = deux_opt(tournee, instance, dist_func);
+        fin = clock();
+        temps_calcul += ((double)(fin - debut)) / CLOCKS_PER_SEC;
+        afficher_tournee_normalisee(instance,tournee,"2optnn",temps_calcul);
+        liberer_tournee(tournee);
+    }
+}
+
+
+void executer_rw(const InstanceTSP* instance, FonctionDistance dist_func, bool avecOpt) {
+    clock_t debut, fin;
+    debut = clock();
+    Tournee* tournee = marche_aleatoire(instance, dist_func);
+    fin = clock();
+    double temps_calcul = ((double)(fin - debut)) / CLOCKS_PER_SEC;
+    if (tournee && !avecOpt){
+        afficher_tournee_normalisee(instance,tournee,"rw",temps_calcul);
+        liberer_tournee(tournee);
+    }    
+    else if (tournee && avecOpt){
+        debut = clock();
+        bool ameliore = deux_opt(tournee, instance, dist_func);
+        fin = clock();
+        temps_calcul += ((double)(fin - debut)) / CLOCKS_PER_SEC;
+        afficher_tournee_normalisee(instance,tournee,"2optrw",temps_calcul);
+        liberer_tournee(tournee);
+    }
+}
+
 int main(int argc, char* argv[]) {
     char* nomFichier = NULL;
     char* methode = NULL;
@@ -148,27 +190,26 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    // Vérifications
     if (!nomFichier) {
         fprintf(stderr, "Erreur: L'option -f est obligatoire.\n");
         fprintf(stderr, "Usage: %s -f <fichier.tsp> [-m <methode> | -c]\n", argv[0]);
         return EXIT_FAILURE;
     }
 
-    // Lecture (Partie 0)
+    // Lecture
     InstanceTSP* instance = lire_fichier_tsplib(nomFichier);
     if (!instance) {
         return EXIT_FAILURE;
     }
 
-    // Obtenir fonction distance (Partie 0)
+    // Obtenir fonction distance 
     FonctionDistance dist_func = obtenir_fonction_distance(instance->type_distance);
     if (!dist_func) {
         liberer_instance(instance);
         return EXIT_FAILURE;
     }
 
-    // Mode canonique (Partie 0)
+    // Mode canonique
     if (mode_canonique) {
         // Construire la tournée canonique [1,2,...,n]
         Tournee* tour = creer_tournee(instance->dimension);
@@ -180,7 +221,6 @@ int main(int argc, char* argv[]) {
             tour->chemin[i] = i + 1;
         }
 
-        // Calculer la longueur + temps
         clock_t debut = clock();
         calculer_longueur_tournee(tour, instance, dist_func);
         clock_t fin = clock();
@@ -191,14 +231,19 @@ int main(int argc, char* argv[]) {
     if (methode != NULL) {
         // Sélectionner la méthode
         if (strcmp(methode, "bf") == 0) {
-            // --- Partie 1 ---
             executer_bf(instance, dist_func);
         }
         else if (strcmp(methode, "nn") == 0) {
-            printf("Méthode 'nn' (Partie 2) non implémentée.\n");
+            executer_nn(instance, dist_func, false);
+        }
+        else if (strcmp(methode, "2optnn") == 0) {
+            executer_nn(instance, dist_func, true);
         }
         else if (strcmp(methode, "rw") == 0) {
-            printf("Méthode 'rw' (Partie 2) non implémentée.\n");
+            executer_rw(instance, dist_func, false);
+        }
+        else if (strcmp(methode, "2optrw") == 0) {
+            executer_rw(instance, dist_func, true);
         }
         else {
             fprintf(stderr, "Erreur: Méthode '%s' non reconnue.\n", methode);
@@ -207,7 +252,6 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    // Nettoyage (Liberation de instance)
     liberer_instance(instance);
     return EXIT_SUCCESS;
 }
