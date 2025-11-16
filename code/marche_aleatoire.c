@@ -22,30 +22,45 @@ Tournee* marche_aleatoire(const InstanceTSP* instance, FonctionDistance dist_fun
     int n = instance->dimension;
     Tournee* tournee = creer_tournee(n);
     if (!tournee) return NULL;
-    
-    // Créer un tableau avec toutes les villes
-    int* villes_disponibles = (int*)malloc(n * sizeof(int));
-    if (!villes_disponibles) {
+
+    int* est_visitee = (int*)calloc(n, sizeof(int));
+    if (!est_visitee) {
         liberer_tournee(tournee);
         return NULL;
     }
-    
-    // Initialiser avec les numéros de villes (1 à n)
-    for (int i = 0; i < n; i++) {
-        villes_disponibles[i] = i + 1;
+
+    int ville_courante = 1;
+
+    tournee->chemin[0] = ville_courante;
+    est_visitee[ville_courante - 1] = 1;
+
+    int villes_restantes = n - 1;
+
+    for (int i = 1; i < n; i++) {
+        int* disponibles = (int*)malloc(villes_restantes * sizeof(int));
+        if (!disponibles) {
+            liberer_tournee(tournee);
+            free(est_visitee);
+            return NULL;
+        }
+
+        int k = 0;
+        for (int j = 1; j <= n; j++) {
+            if (!est_visitee[j - 1]) {
+                disponibles[k++] = j;
+            }
+        }
+
+        int index_aleatoire = rand() % villes_restantes;
+        int prochaine_ville = disponibles[index_aleatoire];
+
+        tournee->chemin[i] = prochaine_ville;
+        est_visitee[prochaine_ville - 1] = 1;
+        ville_courante = prochaine_ville;
+        villes_restantes--;
+
+        free(disponibles);
     }
-    
-    for (int i = n - 1; i > 0; i--) {
-        int j = rand() % (i + 1);
-        int temp = villes_disponibles[i];
-        villes_disponibles[i] = villes_disponibles[j];
-        villes_disponibles[j] = temp;
-    }
-    
-    memcpy(tournee->chemin, villes_disponibles, n * sizeof(int));
-    
-    calculer_longueur_tournee(tournee, instance, dist_func);
-    
-    free(villes_disponibles);
+    free(est_visitee);
     return tournee;
 }
