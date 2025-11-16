@@ -35,7 +35,6 @@ Tournee* marche_aleatoire(const InstanceTSP* instance, FonctionDistance dist_fun
         villes_disponibles[i] = i + 1;
     }
     
-    // Mélanger aléatoirement (Fisher-Yates shuffle)
     for (int i = n - 1; i > 0; i--) {
         int j = rand() % (i + 1);
         int temp = villes_disponibles[i];
@@ -43,10 +42,8 @@ Tournee* marche_aleatoire(const InstanceTSP* instance, FonctionDistance dist_fun
         villes_disponibles[j] = temp;
     }
     
-    // Copier dans la tournée
     memcpy(tournee->chemin, villes_disponibles, n * sizeof(int));
     
-    // Calculer la distance totale
     calculer_longueur_tournee(tournee, instance, dist_func);
     
     free(villes_disponibles);

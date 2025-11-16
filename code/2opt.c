@@ -70,11 +70,6 @@ static double calculer_gain_2opt(const InstanceTSP* instance,
 
 /**
  * Algorithme 2-opt pour améliorer une tournée existante
- * Complexité : O(n²) par itération
- * @param tournee Tournée à améliorer (modifiée en place)
- * @param instance Instance TSP
- * @param dist_func Fonction de distance
- * @return true si des améliorations ont été faites
  */
 bool deux_opt(Tournee* tournee, const InstanceTSP* instance, FonctionDistance dist_func) {
     int n = tournee->taille;
@@ -93,7 +88,6 @@ bool deux_opt(Tournee* tournee, const InstanceTSP* instance, FonctionDistance di
                 // Éviter le cas où on inverse toute la tournée (j+1 == n && i == 0)
                 if (j == n - 1 && i == 0) continue;
                 
-                // Calculer le gain potentiel
                 double gain = calculer_gain_2opt(instance, tournee, dist_func, i, j);
                 
                 if (gain > 0.001) {  // Petit epsilon pour éviter les erreurs d'arrondi
@@ -121,15 +115,12 @@ bool deux_opt(Tournee* tournee, const InstanceTSP* instance, FonctionDistance di
     return amelioration;
 }
 
-/* ============================================== */
-/*     MÉTHODES COMBINÉES (NN+2opt, RW+2opt)     */
-/* ============================================== */
+//    MÉTHODES COMBINÉES (NN+2opt, RW+2opt)
 
 /**
  * Plus proche voisin suivi de 2-opt
  */
 Tournee* nn_avec_2opt(const InstanceTSP* instance, FonctionDistance dist_func) {
-    // Étape 1 : Nearest Neighbor
     Tournee* tournee = plus_proche_voisin(instance, dist_func);
     if (!tournee) return NULL;
     

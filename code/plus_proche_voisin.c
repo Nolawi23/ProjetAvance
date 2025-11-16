@@ -32,7 +32,7 @@ Tournee* plus_proche_voisin(const InstanceTSP* instance, FonctionDistance dist_f
     
     // Commencer par la ville 1 (index 0)
     int ville_courante = 0;
-    tournee->chemin[0] = 1;  // Numérotation 1-based
+    tournee->chemin[0] = 1;  
     visite[0] = true;
     
     // Pour chaque position dans la tournée
@@ -45,7 +45,6 @@ Tournee* plus_proche_voisin(const InstanceTSP* instance, FonctionDistance dist_f
             if (!visite[v]) {
                 double dist;
                 
-                // Utiliser la matrice si disponible
                 if (instance->matrice_existe) {
                     dist = obtenir_distance_matrice(instance, ville_courante, v);
                 } else {
@@ -61,13 +60,12 @@ Tournee* plus_proche_voisin(const InstanceTSP* instance, FonctionDistance dist_f
         
         // Ajouter la ville la plus proche à la tournée
         if (ville_proche != -1) {
-            tournee->chemin[pos] = ville_proche + 1;  // Conversion vers 1-based
+            tournee->chemin[pos] = ville_proche + 1;
             visite[ville_proche] = true;
             ville_courante = ville_proche;
         }
     }
     
-    // Calculer la distance totale
     calculer_longueur_tournee(tournee, instance, dist_func);
     
     free(visite);
