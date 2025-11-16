@@ -143,7 +143,7 @@ void executer_nn(const InstanceTSP* instance, FonctionDistance dist_func, bool a
 void executer_rw(const InstanceTSP* instance, FonctionDistance dist_func, bool avecOpt) {
     clock_t debut, fin;
     debut = clock();
-    Tournee* tournee = marche_aleatoire(instance, dist_func);
+    Tournee* tournee = marche_aleatoire(instance);
     fin = clock();
     double temps_calcul = ((double)(fin - debut)) / CLOCKS_PER_SEC;
     if (tournee && !avecOpt){
