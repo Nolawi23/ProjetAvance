@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.sql": "sql",
+        "tsp_utils.h": "c",
+        "stdlib.h": "c"
+    }
+}
