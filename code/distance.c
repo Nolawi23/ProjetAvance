@@ -1,4 +1,5 @@
 #include "distance.h"
+#include "math.h"
 
 // EUCL_2D : Arrondi à l'entier le plus proche
 double dist_eucl_2d(const Ville* v1, const Ville* v2) {
@@ -7,20 +8,31 @@ double dist_eucl_2d(const Ville* v1, const Ville* v2) {
     return round(sqrt(xd*xd + yd*yd));
 }
 
+static double geo_to_radians(double x) {
+    int deg = (int)x;
+    double min = x - deg;
+    return M_PI * (deg + 5.0 * min / 3.0) / 180.0;
+}
+
+
 // GEO : Calcul standard TSPLIB
 double dist_geo(const Ville* v1, const Ville* v2) {
-    double lat1 = v1->x * M_PI / 180.0;
-    double lon1 = v1->y * M_PI / 180.0;
-    double lat2 = v2->x * M_PI / 180.0;
-    double lon2 = v2->y * M_PI / 180.0;
-    
     double RRR = 6378.388;
+
+    double lat1 = geo_to_radians(v1->x);
+    double lon1 = geo_to_radians(v1->y);
+    double lat2 = geo_to_radians(v2->x);
+    double lon2 = geo_to_radians(v2->y);
+
     double q1 = cos(lon1 - lon2);
     double q2 = cos(lat1 - lat2);
     double q3 = cos(lat1 + lat2);
-    
-    return (int)(RRR * acos(0.5 * ((1.0 + q1) * q2 - (1.0 - q1) * q3)) + 1.0);
+
+    double dij = acos(0.5 * ((1.0 + q1) * q2 - (1.0 - q1) * q3));
+
+    return (int)(RRR * dij + 1.0);
 }
+
 
 // ATT : Calcul standard TSPLIB
 double dist_att(const Ville* v1, const Ville* v2) {

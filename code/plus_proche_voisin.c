@@ -30,7 +30,7 @@ Tournee* plus_proche_voisin(const InstanceTSP* instance, FonctionDistance dist_f
         return NULL;
     }
     
-    // Commencer par la ville 1 (index 0)
+    // Commencer par la ville 1
     int ville_courante = 0;
     tournee->chemin[0] = 1;  
     visite[0] = true;
