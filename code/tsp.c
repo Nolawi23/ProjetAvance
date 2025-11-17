@@ -131,7 +131,7 @@ void executer_nn(const InstanceTSP* instance, FonctionDistance dist_func, bool a
     }    
     else if (tournee && avecOpt){
         debut = clock();
-        bool ameliore = deux_opt(tournee, instance, dist_func);
+        deux_opt(tournee, instance, dist_func);
         fin = clock();
         temps_calcul += ((double)(fin - debut)) / CLOCKS_PER_SEC;
         afficher_tournee_normalisee(instance,tournee,"2optnn",temps_calcul);
@@ -143,7 +143,7 @@ void executer_nn(const InstanceTSP* instance, FonctionDistance dist_func, bool a
 void executer_rw(const InstanceTSP* instance, FonctionDistance dist_func, bool avecOpt) {
     clock_t debut, fin;
     debut = clock();
-    Tournee* tournee = marche_aleatoire(instance);
+    Tournee* tournee = marche_aleatoire(instance,dist_func);
     fin = clock();
     double temps_calcul = ((double)(fin - debut)) / CLOCKS_PER_SEC;
     if (tournee && !avecOpt){
@@ -152,7 +152,7 @@ void executer_rw(const InstanceTSP* instance, FonctionDistance dist_func, bool a
     }    
     else if (tournee && avecOpt){
         debut = clock();
-        bool ameliore = deux_opt(tournee, instance, dist_func);
+        deux_opt(tournee, instance, dist_func);
         fin = clock();
         temps_calcul += ((double)(fin - debut)) / CLOCKS_PER_SEC;
         afficher_tournee_normalisee(instance,tournee,"2optrw",temps_calcul);

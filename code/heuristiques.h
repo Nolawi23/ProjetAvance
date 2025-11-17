@@ -8,8 +8,8 @@
 
 Tournee* plus_proche_voisin(const InstanceTSP* instance, FonctionDistance dist_func);
 
-Tournee* marche_aleatoire(const InstanceTSP* instance);
+Tournee* marche_aleatoire(const InstanceTSP* instance, FonctionDistance dist_func);
 
-bool deux_opt(Tournee* tournee, const InstanceTSP* instance, FonctionDistance dist_func);
+void deux_opt(Tournee* tournee, const InstanceTSP* instance, FonctionDistance dist_func);
 
 #endif

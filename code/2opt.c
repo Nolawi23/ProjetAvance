@@ -69,9 +69,9 @@ static double calculer_gain_2opt(const InstanceTSP* instance,
 /**
  * Algorithme 2-opt pour améliorer une tournée existante
  */
-bool deux_opt(Tournee* tournee, const InstanceTSP* instance, FonctionDistance dist_func) {
+void deux_opt(Tournee* tournee, const InstanceTSP* instance, FonctionDistance dist_func) {
     int n = tournee->taille;
-    bool amelioration = false;
+    //bool amelioration = false;
     bool continuer = true;
     int iterations = 0;
     const int MAX_ITERATIONS = 1000;
@@ -92,11 +92,11 @@ bool deux_opt(Tournee* tournee, const InstanceTSP* instance, FonctionDistance di
                     
                     tournee->distanceTotale -= gain;
                     
-                    amelioration = true;
+                    //amelioration = true;
                     continuer = true;
                 }
             }
         }
     }
-    return amelioration;
+    //return amelioration;
 }

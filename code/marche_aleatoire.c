@@ -18,7 +18,7 @@
 #include "matrice.h"
 
 
-Tournee* marche_aleatoire(const InstanceTSP* instance) {
+Tournee* marche_aleatoire(const InstanceTSP* instance, FonctionDistance dist_func) {
     int n = instance->dimension;
     Tournee* tournee = creer_tournee(n);
     if (!tournee) return NULL;
@@ -61,6 +61,8 @@ Tournee* marche_aleatoire(const InstanceTSP* instance) {
 
         free(disponibles);
     }
+    calculer_longueur_tournee(tournee, instance, dist_func);
+
     free(est_visitee);
     return tournee;
 }
