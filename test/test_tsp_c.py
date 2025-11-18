@@ -31,7 +31,7 @@ def extract_data(path,code,filename,method,distance_fct,coord,graphique):
         tps = eval(lst[ind+3]) # float
         length = int(eval(lst[ind+4])) # int
         tour = eval(lst[ind+5]) # liste
-        l = fitness(tour,distance_fct,coord)
+        l = int(fitness(tour,distance_fct,coord))
         v = valid(tour)
         print(f"{nom} ; {algo} ; {length} ; {l} ; {tps} ; {tour} ; {v==0} ; {l==length}")
         graphique(tour,algo,coord)
@@ -70,11 +70,11 @@ def tests_instances_list(instances_file,methods):
 
 # Liste de paramètres.
 # opt = tsplib95.load_solution(filename+'.opt.tour') pour charger un fichier solution dans python
-filename = "burma14.tsp"
+filename = "a280.tsp"
 #filename = "att10.tsp" #
 path = "../code/" # adaptez à votre cas
 code = "tsp" # nom du programme C
-methods = ["nn","rw","2optnn","2optrw","ga"]# "-c","bf","gadpx"
+methods = ["nn","2optnn","rw","2optrw","ga"]# "-c","bf","gadpx"
 
 #test_instance(filename,methods) # pour un seul appel
 tests_instances_list("instances.txt",methods) # marche si le C marche

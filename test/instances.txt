@@ -2,3 +2,5 @@ att10.tsp
 att15.tsp
 att48.tsp
 burma14.tsp
+bier127.tsp
+a280.tsp
