@@ -208,10 +208,6 @@ int trouver_pire(const Population* pop) {
     return pire;
 }
 
-// ============================================================================
-//                      ALGORITHME GÉNÉTIQUE PRINCIPAL
-// ============================================================================
-
 Tournee* algorithme_genetique(const InstanceTSP* instance, 
                               FonctionDistance dist_func,
                               const ParamsGA* params) {
@@ -299,12 +295,11 @@ Tournee* algorithme_genetique(const InstanceTSP* instance,
 void executer_ga(const InstanceTSP* instance, FonctionDistance dist_func,
                  int nb_individus, int nb_generations, double taux_mutation) {
     
-    // Configurer les paramètres
     ParamsGA params;
     params.taille_population = nb_individus;
     params.nombre_generations = nb_generations;
     params.taux_mutation = taux_mutation;
-    params.nb_croisements = nb_individus / 2;  // Moitié de la population
+    params.nb_croisements = nb_individus / 2;
     
     // Mesurer le temps
     clock_t debut = clock();
