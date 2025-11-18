@@ -13,7 +13,7 @@ from tsp_ga_fct import *
 
 population_size = 30
 generations = 1000
-mutation_rate = 0.10
+mutation_rate = 0.1
 tournament_size = int(0.5*population_size)
 
 file = "att48"

@@ -12,8 +12,11 @@
 #include "tsp_utils.h"
 #include "force_brute.h"
 #include "heuristiques.h"
+#include "ga_generique.h"
 
-
+int nb_individus = 30;
+int nb_generations = 1000;
+double taux_mutation = 0.1;
 /*  Exécute la logique de test de la Partie 1 (force brute).
     Teste avec et sans matrice pré-calculée. */
 
@@ -244,6 +247,9 @@ int main(int argc, char* argv[]) {
         }
         else if (strcmp(methode, "2optrw") == 0) {
             executer_rw(instance, dist_func, true);
+        }
+        else if (strcmp(methode, "ga") == 0) {
+            executer_ga(instance, dist_func,  nb_individus,  nb_generations, taux_mutation);
         }
         else {
             fprintf(stderr, "Erreur: Méthode '%s' non reconnue.\n", methode);
