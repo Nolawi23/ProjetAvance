@@ -19,7 +19,7 @@ typedef struct {
 // Population d'individus (tournées)
 typedef struct {
     Tournee** individus;        // Tableau de tournées
-    double* fitness;            // Tableau des longueurs (fitness)
+    double* distances;            // Tableau des longueurs (fitness)
     int taille;                 // Taille de la population
 } Population;
 

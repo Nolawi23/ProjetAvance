@@ -13,24 +13,7 @@
 #include "tsp_utils.h"
 #include "distance.h"
 #include "matrice.h"
-
-// ============================================================================
-//                      STRUCTURES POUR L'ALGORITHME GÉNÉTIQUE
-// ============================================================================
-
-typedef struct {
-    int taille_population;      // Nombre d'individus
-    int nombre_generations;     // Nombre de générations
-    double taux_mutation;       // Probabilité de mutation (0.0 à 1.0)
-    int nb_croisements;         // Nombre de croisements par génération
-} ParamsGA;
-
-typedef struct {
-    Tournee** individus;        // Tableau de tournées
-    double* distances;            // Tableau des longueurs (distances)
-    int taille;                 // Taille de la population
-} Population;
-
+#include "ga_generique.h"
 
 Population* creer_population(int taille, int dimension) {
     Population* pop = (Population*)malloc(sizeof(Population));
