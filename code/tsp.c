@@ -211,6 +211,7 @@ int main(int argc, char* argv[]) {
         liberer_instance(instance);
         return EXIT_FAILURE;
     }
+    calculer_matrice_distances(instance, dist_func);
 
     // Mode canonique
     if (mode_canonique) {

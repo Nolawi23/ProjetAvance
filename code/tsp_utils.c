@@ -78,7 +78,7 @@ void afficher_tournee_normalisee(const InstanceTSP* instance,
                                  const char* methode, 
                                  double temps_cpu) {
                                     
-    printf("Tour : %s %s %.6f %.0f [", instance->nom, methode, temps_cpu, tournee->distanceTotale);    
+    printf("Tour : %s %s %.6f %.6f [", instance->nom, methode, temps_cpu, tournee->distanceTotale);    
     for (int i = 0; i < tournee->taille; i++) {
         printf("%d", tournee->chemin[i]);
         if (i < tournee->taille - 1) printf(",");

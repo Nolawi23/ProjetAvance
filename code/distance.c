@@ -5,7 +5,7 @@
 double dist_eucl_2d(const Ville* v1, const Ville* v2) {
     double xd = v1->x - v2->x;
     double yd = v1->y - v2->y;
-    return round(sqrt(xd*xd + yd*yd));
+    return sqrt(xd*xd + yd*yd);
 }
 
 static double geo_to_radians(double x) {
