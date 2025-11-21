@@ -252,6 +252,22 @@ int main(int argc, char* argv[]) {
         else if (strcmp(methode, "ga") == 0) {
             executer_ga(instance, dist_func,  nb_individus,  nb_generations, taux_mutation);
         }
+        else if (strcmp(methode, "gadpx") == 0) {
+        int remaining = argc - optind;
+        if (remaining < 3) {
+        fprintf(stderr,
+                "Usage : -m gadpx <population> <generations> <mutation>\n");
+        liberer_instance(instance);
+        return EXIT_FAILURE;
+    }
+
+    int pop = atoi(argv[optind]);
+    int gen = atoi(argv[optind+1]);
+    double mut = atof(argv[optind+2]);
+
+    executer_ga(instance, dist_func, pop, gen, mut); 
+}
+
         else {
             fprintf(stderr, "Erreur: Méthode '%s' non reconnue.\n", methode);
             liberer_instance(instance);
