@@ -3,7 +3,7 @@
 
 ---
 
-## 👥 Membres de l'équipe 11
+## Membres de l'équipe 11
 
 - **Nolawi GEBREKIRSTOS** 
 - **Yoakin HAILSELASSIEA**
@@ -12,7 +12,7 @@
 
 ---
 
-## 📖 Description du projet
+## Description du projet
 
 Ce projet implémente plusieurs algorithmes de résolution du **Problème du Voyageur de Commerce (TSP)** en langage C, conformément aux spécifications du sujet de projet avancé.
 
@@ -29,7 +29,7 @@ Ce projet implémente plusieurs algorithmes de résolution du **Problème du Voy
 
 ---
 
-## 🗂️ Structure du projet
+## Structure du projet
 
 ```
 projet-tsp/
@@ -90,7 +90,7 @@ make rebuild
 
 ---
 
-## 📦 Installation des dépendances
+## Installation des dépendances
 
 ### Dépendances C
 
@@ -119,7 +119,7 @@ pip install tsplib95 pyproj matplotlib
 
 ---
 
-## 🚀 Utilisation
+## Utilisation
 
 ### Synopsis
 
@@ -159,8 +159,8 @@ pip install tsplib95 pyproj matplotlib
 **Principe** : Énumération exhaustive de toutes les permutations possibles.
 
 **Caractéristiques :**
-- ✅ Solution optimale garantie
-- ❌ Complexité : O((n-1)!)
+- Solution optimale garantie
+- Complexité : O((n-1)!)
 - Utilisable uniquement pour n ≤ 12-13 villes
 - Gestion des interruptions (Ctrl+C)
 - Calcule aussi la pire tournée
@@ -426,28 +426,28 @@ Le script Python vérifie :
 ### Analyse comparative
 
 **Force brute (bf) :**
-- ✅ Solution optimale garantie
-- ❌ Limité à ~12 villes (temps exponentiel)
+- Solution optimale garantie
+- Limité à ~12 villes (temps exponentiel)
 - Utile pour validation sur petites instances
 
 **Plus proche voisin (nn) :**
-- ✅ Très rapide
-- ✅ Solutions raisonnables (4-15% de l'optimum)
+- Très rapide
+- Solutions raisonnables (4-15% de l'optimum)
 - Excellent choix pour initialisation
 
 **2-opt + NN :**
-- ✅ Meilleur rapport qualité/temps
-- ✅ Solutions à 1-5% de l'optimum
+- Meilleur rapport qualité/temps
+- Solutions à 1-5% de l'optimum
 - **Recommandé pour usage général**
 
 **Algorithme génétique (ga) :**
-- ✅ Bonnes solutions (3-10% de l'optimum)
-- ❌ Plus lent que 2-opt
+- Bonnes solutions (3-10% de l'optimum)
+- Plus lent que 2-opt
 - Intéressant pour instances complexes
 
 ---
 
-## ⚠️ Limitations
+## Limitations
 
 ### Limitations algorithmiques
 
@@ -473,7 +473,7 @@ Le script Python vérifie :
 
 ---
 
-## 💡 Exemples d'utilisation
+## Exemples d'utilisation
 
 ### Cas d'usage typiques
 
@@ -551,7 +551,7 @@ Voulez-vous continuer les calculs ? (o/n) : n
 
 ---
 
-## 📝 Format des fichiers TSPLIB
+## Format des fichiers TSPLIB
 
 ### Structure d'un fichier .tsp
 
@@ -580,7 +580,7 @@ EOF
 
 ---
 
-## 📄 Licence et crédits
+## Licence et crédits
 
 ### Projet académique
 
@@ -596,7 +596,7 @@ Les instances de test proviennent de la bibliothèque TSPLIB95, maintenue par l'
 
 ---
 
-## ✅ Checklist de validation
+## Checklist de validation
 
 - [x] Compilation sans erreur ni warning
 - [x] Toutes les méthodes implémentées et fonctionnelles
