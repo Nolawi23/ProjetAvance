@@ -24,6 +24,11 @@ void test_sans_avec_matrice(InstanceTSP* instance, FonctionDistance dist_func) {
     clock_t debut, fin;
     double temps_cpu, temps_matrice;
     Tournee* meilleure, * pire;
+    struct sigaction action;
+    action.sa_handler = gestionnaire_interruption;
+    sigemptyset(&action.sa_mask);
+    action.sa_flags = 0;
+    sigaction(SIGINT, &action, NULL);
 
     long long nb_perms = (instance->dimension <= 1) ? 1 : factorial(instance->dimension - 1);
     printf("Instance : %s (%d villes)\n", instance->nom, instance->dimension);
@@ -43,9 +48,7 @@ void test_sans_avec_matrice(InstanceTSP* instance, FonctionDistance dist_func) {
     instance->matrice_existe = false;
 
     debut = clock();
-    signal(SIGINT, gestionnaire_interruption); // Armer le signal
     int res_sans = resoudre_force_brute(instance, dist_func, &meilleure, &pire);
-    signal(SIGINT, SIG_DFL); // Désarmer le signal (comportement par défaut)
     fin = clock();
     temps_cpu = ((double)(fin - debut)) / CLOCKS_PER_SEC;
 
@@ -70,9 +73,7 @@ void test_sans_avec_matrice(InstanceTSP* instance, FonctionDistance dist_func) {
     printf("Temps création matrice : %.4f secondes\n", temps_matrice);
 
     debut = clock();
-    signal(SIGINT, gestionnaire_interruption); 
     int res_avec = resoudre_force_brute(instance, dist_func, &meilleure, &pire);
-    signal(SIGINT, SIG_DFL);
     fin = clock();
     double temps_calcul_avec = ((double)(fin - debut)) / CLOCKS_PER_SEC;
 
@@ -116,7 +117,6 @@ void executer_bf(InstanceTSP* instance, FonctionDistance dist_func) {
     int res_sans = resoudre_force_brute(instance, dist_func, &meilleure, &pire);
     fin = clock();
 
-    sigaction(SIGINT, SIG_DFL, NULL);
     double temps_calcul = ((double)(fin - debut)) / CLOCKS_PER_SEC;
     if (res_sans) {
         afficher_tournee_normalisee(instance,meilleure,"bf",temps_calcul);
