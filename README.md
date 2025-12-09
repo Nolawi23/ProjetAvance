@@ -344,7 +344,7 @@ Le script Python vérifie :
 
 ### Résultats sur instances de référence
 
-#### att10 (10 villes, optimum : inconnu)
+#### att10 (10 villes)
 | Méthode | Distance | Temps |
 |---------|----------|-------|
 | bf | 6178 | 53.759ms |
@@ -355,7 +355,7 @@ Le script Python vérifie :
 | ga | **6178** | 6.666ms |
 | gadpx | 6273 | 18.949ms |
 
-#### att15 (15 villes, optimum : 6443)
+#### att15 (15 villes)
 | Méthode | Distance | Temps |
 |---------|----------|-------|
 | nn | 7798 | 0.007ms |
@@ -366,7 +366,7 @@ Le script Python vérifie :
 | gadpx | **6443** | 30.539ms |
 
 
-#### burma14 (14 villes, optimum : 3323)
+#### burma14 (14 villes)
 | Méthode | Distance | Temps |
 |---------|----------|-------|
 | nn | 4048 | 0.005ms |
@@ -377,7 +377,7 @@ Le script Python vérifie :
 | gadpx | 3336 | 27.123ms |
 
 
-#### att48 (48 villes, optimum : 33522)
+#### att48 (48 villes)
 | Méthode | Distance | Temps |
 |---------|----------|-------|
 | nn | 12861 | 0.031ms |
@@ -388,7 +388,7 @@ Le script Python vérifie :
 | gadpx | 11138 | 108.218ms |
 
 
-#### bier127 (127 villes, optimum : 118282)
+#### bier127 (127 villes)
 | Méthode | Distance | Temps |
 |---------|----------|-------|
 | nn | 135751 | 0.131ms |
@@ -399,7 +399,7 @@ Le script Python vérifie :
 | gadpx | **127471** | 426.283ms |
 
 
-#### a280 (280 villes, optimum : 2579)
+#### a280 (280 villes)
 | Méthode | Distance | Temps |
 |---------|----------|-------|
 | nn | 3148 | 0.449ms |
