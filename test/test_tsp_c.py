@@ -74,7 +74,7 @@ filename = "a280.tsp"
 #filename = "att10.tsp" #
 path = "../code/" # adaptez à votre cas
 code = "tsp" # nom du programme C
-methods = ["nn","2optnn","rw","2optrw","ga"]# "-c","bf","gadpx"
+methods = ["nn","ga","gadpx"]# "-c","bf","ga" "nn","2optnn","rw","2optrw",
 
 #test_instance(filename,methods) # pour un seul appel
 tests_instances_list("instances.txt",methods) # marche si le C marche

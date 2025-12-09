@@ -26,11 +26,14 @@ typedef struct {
 //     FONCTIONS PRINCIPALES
 
 void executer_ga(const InstanceTSP* instance, FonctionDistance dist_func,
-                 int nb_individus, int nb_generations, double taux_mutation);
+                 int nb_individus, int nb_generations, double taux_mutation,
+                Tournee* foncCroisement(const Tournee *parent1, const Tournee *parent2));
 
 Tournee* algorithme_genetique(const InstanceTSP* instance, 
                               FonctionDistance dist_func,
-                              const ParamsGA* params);
+                              const ParamsGA* params,
+                              Tournee* foncCroisement(const Tournee *parent1, const Tournee *parent2)
+);
 
 //GESTION DE LA POPULATION
 
@@ -49,6 +52,9 @@ void evaluer_population(Population* pop, const InstanceTSP* instance,
 void selectionner_deux_parents(const Population* pop, int* idx1, int* idx2);
 
 Tournee* croisement_ordonne(const Tournee* parent1, const Tournee* parent2);
+
+Tournee* croisement_dpx(const Tournee *parent1, const Tournee *parent2);
+
 
 void mutation_echange(Tournee* tournee, double taux_mutation);
 

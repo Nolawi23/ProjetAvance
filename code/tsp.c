@@ -105,14 +105,18 @@ void test_sans_avec_matrice(InstanceTSP* instance, FonctionDistance dist_func) {
 void executer_bf(InstanceTSP* instance, FonctionDistance dist_func) {
     clock_t debut, fin;
     Tournee* meilleure, * pire;
+    struct sigaction action;
+    action.sa_handler = gestionnaire_interruption;
+    sigemptyset(&action.sa_mask);
+    action.sa_flags = 0;
+    sigaction(SIGINT, &action, NULL);
 
     debut = clock();
     calculer_matrice_distances(instance, dist_func);
-
-    signal(SIGINT, gestionnaire_interruption);
     int res_sans = resoudre_force_brute(instance, dist_func, &meilleure, &pire);
-    signal(SIGINT, SIG_DFL);
     fin = clock();
+
+    sigaction(SIGINT, SIG_DFL, NULL);
     double temps_calcul = ((double)(fin - debut)) / CLOCKS_PER_SEC;
     if (res_sans) {
         afficher_tournee_normalisee(instance,meilleure,"bf",temps_calcul);
@@ -237,6 +241,9 @@ int main(int argc, char* argv[]) {
         if (strcmp(methode, "bf") == 0) {
             executer_bf(instance, dist_func);
         }
+        else if (strcmp(methode, "bft") == 0) {
+            test_sans_avec_matrice(instance, dist_func);
+        }
         else if (strcmp(methode, "nn") == 0) {
             executer_nn(instance, dist_func, false);
         }
@@ -250,7 +257,10 @@ int main(int argc, char* argv[]) {
             executer_rw(instance, dist_func, true);
         }
         else if (strcmp(methode, "ga") == 0) {
-            executer_ga(instance, dist_func,  nb_individus,  nb_generations, taux_mutation);
+            executer_ga(instance, dist_func,  nb_individus,  nb_generations, taux_mutation, croisement_ordonne);
+        } 
+        else if (strcmp(methode, "gadpx") == 0) {
+            executer_ga(instance, dist_func,  nb_individus,  nb_generations, taux_mutation, croisement_dpx);
         }
         else {
             fprintf(stderr, "Erreur: Méthode '%s' non reconnue.\n", methode);

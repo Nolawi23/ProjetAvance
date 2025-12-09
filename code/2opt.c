@@ -98,5 +98,4 @@ void deux_opt(Tournee* tournee, const InstanceTSP* instance, FonctionDistance di
             }
         }
     }
-    //return amelioration;
 }
