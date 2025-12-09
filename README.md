@@ -347,6 +347,7 @@ Le script Python vérifie :
 #### att10 (10 villes, optimum : inconnu)
 | Méthode | Distance | Temps |
 |---------|----------|-------|
+| bf | 6178 | 53.759ms |
 | nn | 6704 | 0.004ms |
 | rw | 13211 | 0.005ms |
 | 2optnn | **6178** | 0.013ms |
