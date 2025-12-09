@@ -5,10 +5,10 @@
 
 ## 👥 Membres de l'équipe 11
 
-- **Nolawi GEBREKIRSTOS** - 
-- **Yoakin HAILSELASSIEA** - 
-- **Anteneh AMDEBERHAN** - 
-- **Tidiane MICHEL** - 
+- **Nolawi GEBREKIRSTOS** 
+- **Yoakin HAILSELASSIEA**
+- **Anteneh AMDEBERHAN**  
+- **Tidiane MICHEL** 
 
 ---
 
@@ -347,67 +347,66 @@ Le script Python vérifie :
 #### att10 (10 villes, optimum : inconnu)
 | Méthode | Distance | Temps |
 |---------|----------|-------|
-| nn | 6704 | 0.000006s |
-| rw | 13211 | 0.000006s |
-| 2optnn | **6178** | 0.000011s |
-| 2optrw | **6178** | 0.000011s |
-| ga | **6178** | 0.0067s |
-| gapdx | **** | s |
+| nn | 6704 | 0.004ms |
+| rw | 13211 | 0.005ms |
+| 2optnn | **6178** | 0.013ms |
+| 2optrw | **6178** | 0.011ms |
+| ga | **6178** | 6.666ms |
+| gadpx | 6273 | 18.949ms |
 
-#### att15 (15 villes, optimum : inconnu)
+#### att15 (15 villes, optimum : 6443)
 | Méthode | Distance | Temps |
 |---------|----------|-------|
-| nn | 7798 | 0.000005s |
-| rw | 15366 | 0.000005s |
-| 2optnn | **6443** | 0.000027s |
-| 2optrw | 6549 | 0.000018s |
-| ga | **6443** | 0.0089s |
-| gapdx | **** | s |
+| nn | 7798 | 0.007ms |
+| rw | 15366 | 0.005ms |
+| 2optnn | **6443** | 0.020ms |
+| 2optrw | 6549 | 0.019ms |
+| ga | **6443** | 9.082ms |
+| gadpx | **6443** | 30.539ms |
 
 
 #### burma14 (14 villes, optimum : 3323)
 | Méthode | Distance | Temps |
 |---------|----------|-------|
-| nn | 4048 | 0.000005s |
-| rw | 6669 | 0.000005s |
-| 2optnn | 3371 | 0.000020s |
-| 2optrw | 3336 | 0.000027s |
-| ga | **3323** | 0.0093s |
-| gapdx | **** | s |
+| nn | 4048 | 0.005ms |
+| rw | 6669 | 0.005ms |
+| 2optnn | 3371 | 0.021ms |
+| 2optrw | 3336 | 0.020ms |
+| ga | **3323** | 8.169ms |
+| gadpx | 3336 | 27.123ms |
 
 
 #### att48 (48 villes, optimum : 33522)
 | Méthode | Distance | Temps |
 |---------|----------|-------|
-| nn | 12861 | 0.000025s |
-| rw | 46568 | 0.000018s |
-| 2optnn | 10959 | 0.000139s |
-| 2optrw | **10752** | 0.000223s |
-| ga | 22529 | 0.030s |
-| gapdx | **** | s |
+| nn | 12861 | 0.031ms |
+| rw | 46568 | 0.022ms |
+| 2optnn | **10959** | 0.183ms |
+| 2optrw | **10752** | 0.323ms |
+| ga | 11202 | 33.209ms |
+| gadpx | 11138 | 108.218ms |
 
 
-#### bier127 (127 villes, optimum : inconnu)
+#### bier127 (127 villes, optimum : 118282)
 | Méthode | Distance | Temps |
 |---------|----------|-------|
-| nn | 135751 | 0.000198s |
-| rw | 612594 | 0.000090s |
-| 2optnn | **124973** | 0.0022s |
-| 2optrw | 129708 | 0.0017s |
-| ga | 361893 | 0.136s |
-| gapdx | **** | s |
+| nn | 135751 | 0.131ms |
+| rw | 612594 | 0.130ms |
+| 2optnn | **124973** | 2.150ms |
+| 2optrw | 129708 | 1.879ms |
+| ga | 133696 | 137.716ms |
+| gadpx | **127471** | 426.283ms |
 
 
 #### a280 (280 villes, optimum : 2579)
 | Méthode | Distance | Temps |
 |---------|----------|-------|
-| nn | 3148 | 0.00045s |
-| rw | 35717 | 0.00031s |
-| 2optnn | **2840** | 0.0062s |
-| 2optrw | 2965 | 0.0065s |
-| ga | 21874 | 0.53s |
-| gapdx | **** | s |
-| 2optgapdx | **** | s |
+| nn | 3148 | 0.449ms |
+| rw | 35717 | 0.334ms |
+| 2optnn | **2840** | 6.281ms |
+| 2optrw | 2965 | 6.397ms |
+| ga | **2905** | 535.287ms |
+| gadpx | 2996 | 1647.908ms |
 
 
 ### Résumé des performances
