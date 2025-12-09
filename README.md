@@ -73,7 +73,7 @@ projet-tsp/
 
 ---
 
-## 🔧 Compilation
+## Compilation
 
 ### Compilation du projet
 
